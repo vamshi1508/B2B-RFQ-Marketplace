@@ -1,4 +1,8 @@
 const mysql = require("mysql2/promise");
+const fs = require("fs");
+const path = require("path");
+
+const caPath = path.join(__dirname, "../../ca.pem");
 
 const pool = mysql.createPool({
     host: process.env.DB_HOST,
@@ -8,7 +12,8 @@ const pool = mysql.createPool({
     port: Number(process.env.DB_PORT) || 3306,
 
     ssl: {
-        rejectUnauthorized: false
+        ca: fs.readFileSync(caPath),
+        rejectUnauthorized: true
     },
 
     waitForConnections: true,
