@@ -26,7 +26,8 @@ function BuyerDashboard() {
             setLoading(true);
             setError("");
 
-            const response = await API.get("/rfqs");
+            // Buyer should fetch only their own RFQs
+            const response = await API.get("/rfqs/my");
 
             console.log("BUYER RFQ RESPONSE:", response.data);
 
@@ -119,9 +120,11 @@ function BuyerDashboard() {
             <div style={styles.center}>
                 <div style={styles.loadingBox}>
                     <div style={styles.spinner}></div>
+
                     <h2 style={styles.loadingTitle}>
                         Loading Buyer Dashboard...
                     </h2>
+
                     <p style={styles.loadingText}>
                         Please wait while we fetch your RFQs.
                     </p>
@@ -144,6 +147,7 @@ function BuyerDashboard() {
             <header style={styles.header}>
 
                 <div style={styles.logoSection}>
+
                     <div style={styles.logoIcon}>
                         B2B
                     </div>
@@ -157,11 +161,13 @@ function BuyerDashboard() {
                             Buyer Portal
                         </span>
                     </div>
+
                 </div>
 
                 <div style={styles.headerRight}>
 
                     <div style={styles.userInfo}>
+
                         <div style={styles.avatar}>
                             {(
                                 user.name ||
@@ -173,6 +179,7 @@ function BuyerDashboard() {
                         </div>
 
                         <div>
+
                             <span style={styles.userLabel}>
                                 Buyer
                             </span>
@@ -182,7 +189,9 @@ function BuyerDashboard() {
                                     user.email ||
                                     "Buyer"}
                             </strong>
+
                         </div>
+
                     </div>
 
                     <button
@@ -209,6 +218,7 @@ function BuyerDashboard() {
                 <div style={styles.titleSection}>
 
                     <div>
+
                         <span style={styles.eyebrow}>
                             PROCUREMENT MANAGEMENT
                         </span>
@@ -222,6 +232,7 @@ function BuyerDashboard() {
                             quotations, and manage your
                             procurement requests.
                         </p>
+
                     </div>
 
                     <button
@@ -233,6 +244,7 @@ function BuyerDashboard() {
                         <span style={styles.createIcon}>
                             +
                         </span>
+
                         Create New RFQ
                     </button>
 
@@ -244,11 +256,13 @@ function BuyerDashboard() {
 
                 {error && (
                     <div style={styles.error}>
+
                         <span style={styles.errorIcon}>
                             !
                         </span>
 
                         <div>
+
                             <strong>
                                 Unable to load RFQs
                             </strong>
@@ -256,6 +270,7 @@ function BuyerDashboard() {
                             <p style={styles.errorText}>
                                 {error}
                             </p>
+
                         </div>
 
                         <button
@@ -264,6 +279,7 @@ function BuyerDashboard() {
                         >
                             Retry
                         </button>
+
                     </div>
                 )}
 
@@ -392,6 +408,7 @@ function BuyerDashboard() {
                     <div style={styles.sectionHeader}>
 
                         <div>
+
                             <h2 style={styles.sectionTitle}>
                                 My RFQs
                             </h2>
@@ -401,6 +418,7 @@ function BuyerDashboard() {
                                 quotation and review supplier
                                 responses.
                             </p>
+
                         </div>
 
                         <button
@@ -480,8 +498,7 @@ function BuyerDashboard() {
                                         <th
                                             style={{
                                                 ...styles.th,
-                                                textAlign:
-                                                    "right"
+                                                textAlign: "right"
                                             }}
                                         >
                                             Action
@@ -496,9 +513,7 @@ function BuyerDashboard() {
                                     {rfqs.map((rfq) => {
 
                                         const status =
-                                            getDisplayStatus(
-                                                rfq
-                                            );
+                                            getDisplayStatus(rfq);
 
                                         const deadline =
                                             new Date(
@@ -508,18 +523,12 @@ function BuyerDashboard() {
                                         return (
                                             <tr
                                                 key={rfq.id}
-                                                style={
-                                                    styles.tableRow
-                                                }
+                                                style={styles.tableRow}
                                             >
 
                                                 {/* PRODUCT */}
 
-                                                <td
-                                                    style={
-                                                        styles.td
-                                                    }
-                                                >
+                                                <td style={styles.td}>
 
                                                     <div
                                                         style={
@@ -564,25 +573,16 @@ function BuyerDashboard() {
 
                                                 {/* QUANTITY */}
 
-                                                <td
-                                                    style={
-                                                        styles.td
-                                                    }
-                                                >
+                                                <td style={styles.td}>
                                                     <strong>
-                                                        {
-                                                            rfq.quantity
-                                                        }
+                                                        {rfq.quantity}
                                                     </strong>
                                                 </td>
 
                                                 {/* LOCATION */}
 
-                                                <td
-                                                    style={
-                                                        styles.td
-                                                    }
-                                                >
+                                                <td style={styles.td}>
+
                                                     <span
                                                         style={
                                                             styles.location
@@ -593,15 +593,12 @@ function BuyerDashboard() {
                                                             rfq.delivery_location
                                                         }
                                                     </span>
+
                                                 </td>
 
                                                 {/* DEADLINE */}
 
-                                                <td
-                                                    style={
-                                                        styles.td
-                                                    }
-                                                >
+                                                <td style={styles.td}>
 
                                                     <div
                                                         style={
@@ -656,11 +653,7 @@ function BuyerDashboard() {
 
                                                 {/* STATUS */}
 
-                                                <td
-                                                    style={
-                                                        styles.td
-                                                    }
-                                                >
+                                                <td style={styles.td}>
 
                                                     <span
                                                         style={{
@@ -670,6 +663,7 @@ function BuyerDashboard() {
                                                             )
                                                         }}
                                                     >
+
                                                         <span
                                                             style={
                                                                 styles.statusDot
@@ -677,6 +671,7 @@ function BuyerDashboard() {
                                                         ></span>
 
                                                         {status}
+
                                                     </span>
 
                                                 </td>
@@ -686,8 +681,7 @@ function BuyerDashboard() {
                                                 <td
                                                     style={{
                                                         ...styles.td,
-                                                        textAlign:
-                                                            "right"
+                                                        textAlign: "right"
                                                     }}
                                                 >
 
@@ -730,6 +724,7 @@ function BuyerDashboard() {
             ================================== */}
 
             <footer style={styles.footer}>
+
                 <span>
                     B2B RFQ Marketplace
                 </span>
@@ -737,6 +732,7 @@ function BuyerDashboard() {
                 <span>
                     Buyer Procurement Portal
                 </span>
+
             </footer>
 
         </div>
