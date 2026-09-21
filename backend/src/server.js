@@ -65,8 +65,14 @@ app.use("/api/auth", authRoutes);
 // ===============================
 
 app.use("/api/rfqs", rfqRoutes);
-// Quotation routes
+
+
+// ===============================
+// QUOTATION ROUTES
+// ===============================
+
 app.use("/api/quotations", quotationRoutes);
+
 
 // ===============================
 // PROTECTED TEST ROUTE
@@ -101,8 +107,8 @@ app.get(
 // START SERVER
 // ===============================
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
