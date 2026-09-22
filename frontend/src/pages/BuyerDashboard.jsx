@@ -686,15 +686,15 @@ function BuyerDashboard() {
                                                 >
 
                                                     <button
-                                                        onClick={() =>
-                                                            navigate(
-                                                                `/buyer/rfq/${rfq.id}`
-                                                            )
-                                                        }
-                                                        style={
-                                                            styles.viewButton
-                                                        }
-                                                    >
+    onClick={() =>
+        navigate(
+            `/buyer/rfq/${rfq.id}/quotations`
+        )
+    }
+    style={
+        styles.viewButton
+    }
+>
                                                         View Details
                                                         <span>
                                                             →
