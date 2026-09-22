@@ -300,5 +300,22 @@ The application is deployed as separate frontend and backend services.
 - Database: MySQL
 - Production connection secured using SSL/TLS
 
+## Assumptions and Limitations
+
+### Assumptions
+- The application is designed as a mini B2B RFQ marketplace for demonstration and evaluation purposes.
+- Users register with either a Buyer or Supplier role.
+- Buyers can create and manage their own RFQs, while Suppliers can browse open RFQs and submit quotations.
+- RFQ deadlines are used to determine whether an RFQ is open or expired.
+- A quotation can be accepted by the Buyer for an RFQ.
+
+### Limitations
+- The application does not include real-time notifications or email notifications.
+- Payment processing and transaction management are outside the scope of this assignment.
+- Supplier verification and business/KYC verification are not implemented.
+- Advanced search, analytics, and reporting features are not included.
+- The application is intended as a functional assignment/demo and is not yet optimized for large-scale production workloads.## Assumptions and Limitations
+
+
 
 
